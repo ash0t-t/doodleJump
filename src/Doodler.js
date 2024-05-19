@@ -3,8 +3,8 @@ import { game } from "./index.js";
 
 export class Doodler {
   constructor() {
-    this.width = 90;
-    this.height = 90;
+    this.width = 100;
+    this.height = 100;
     this.velocityX = 0;
     this.velocityY = 0;
     this.gravity = 0.4;
