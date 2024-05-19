@@ -3,8 +3,8 @@ import { Decoration } from "./Decoration.js";
 
 export class Platform {
   constructor(x, y, type = "normal") {
-    this.width = 70;
-    this.height = 40;
+    this.width = type === "normal" ? 80 : 90;
+    this.height = type === "normal" ? 50 : 60;
     this.x = x;
     this.y = y;
     this.type = type;
