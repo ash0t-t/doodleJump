@@ -1,8 +1,11 @@
-body {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+#controls {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+}
 #game {
+  text-align: center;
   background-image: url("../images/background.png");
 }
 
