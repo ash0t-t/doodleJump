@@ -2,8 +2,8 @@ import { ctx, canvas } from './Util.js';
 
 export class Enemy {
     constructor(x, y) {
-        this.width = 40;
-        this.height = 40;
+        this.width = 60;
+        this.height = 60;
         this.x = x;
         this.y = y;
         this.img = new Image();
@@ -22,7 +22,7 @@ export class Enemy {
     }
 
     update() {
-        this.y += 2; // Enemy falling speed
+        this.y += 2;
         if (this.y > canvas.height) {
             this.reset();
         }

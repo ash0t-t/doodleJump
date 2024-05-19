@@ -7,17 +7,22 @@ export function updateScore(game) {
     }
 }
 
-export function moveDoodler(e) {
-    if (e.code === "ArrowRight" || e.code === "KeyD") {
-        doodler.velocityX = 4;
-    } else if (e.code === "ArrowLeft" || e.code === "KeyA") {
-        doodler.velocityX = -4;
-    } else if (e.code === "Space" && game.gameOver) {
-        // Reset game logic
-    } else if (e.code === "Space") {
-        game.fireProjectile();
-    }
-}
+/* export function moveDoodler(e) {
+  if (e.code === "ArrowRight" || e.code === "KeyD") {
+      doodler.velocityY += 40;
+      doodler.velocityX += 40
+      // doodler.img.src = 'images/doodler-right.png';
+      console.log("A")
+  } else if (e.code === "ArrowLeft" || e.code === "KeyA") {
+      doodler.velocityY += -4;
+      doodler.velocityX += -4
+      // doodler.img.src = 'images/doodler-left.png';
+      console.log("B")
+  } else if (e.code === "Space") {
+      game.fireProjectile();
+  }
+} */
+
 export function detectCollision(a, b) {
   return a.x < b.x + b.width &&
          a.x + a.width > b.x &&

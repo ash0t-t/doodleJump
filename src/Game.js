@@ -4,7 +4,7 @@ import { Doodler } from './Doodler.js';
 import { PlatformManager } from './Platform.js';
 import { Enemy } from './Enemy.js';
 import { Projectile } from './Projectile.js';
-import { updateScore, moveDoodler, detectCollision } from './Physics.js';
+import { updateScore, detectCollision } from './Physics.js';
 
 export class Game {
     constructor() {
@@ -22,9 +22,29 @@ export class Game {
     }
 
     init() {
-        window.addEventListener("keydown", moveDoodler);
+        window.onkeydown = e => {
+            if (e.key === "ArrowRight" || e.key === "KeyD") {
+                this.goRight();
+            } else if (e.key === "ArrowLeft" || e.key === "KeyA") {
+                this.goLeft();
+            } else if (e.key === "Space") {
+                this.shoot();
+            }
+        };
         this.spawnEnemies();
         this.id = requestAnimationFrame(() => this.run());
+    }
+
+    goRight() {
+        this.doodler.moveRight();
+    }
+
+    goLeft() {
+        this.doodler.moveLeft();
+    }
+
+    shoot() {
+        this.fireProjectile();
     }
 
     run() {
@@ -32,7 +52,7 @@ export class Game {
             this.displayScore();
             return;
         }
-        
+
         this.id = requestAnimationFrame(() => this.run());
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.objects.forEach(obj => obj.draw());
@@ -67,12 +87,12 @@ export class Game {
     }
 
     checkCollisions() {
-        this.platformManager.platforms.forEach(platform => {
+        this.platformManager.platforms.forEach((platform, index) => {
             if (detectCollision(this.doodler, platform)) {
                 if (platform.type === 'broken') {
-                    // Platform breaks, no jump
+                    this.platformManager.platforms.splice(index, 1); // Remove broken platform
                 } else if (platform.type === 'spring') {
-                    this.doodler.jump(true);  // True indicates spring jump
+                    this.doodler.jump(true); // True indicates spring jump
                 } else {
                     this.doodler.jump();
                     this.jumpSound.play();
@@ -80,14 +100,14 @@ export class Game {
             }
         });
 
-        this.enemies.forEach(enemy => {
+        this.enemies.forEach((enemy, eIndex) => {
             if (detectCollision(this.doodler, enemy)) {
                 this.gameOver = true;
             }
 
             this.projectiles.forEach((projectile, pIndex) => {
                 if (detectCollision(projectile, enemy)) {
-                    this.enemies.splice(this.enemies.indexOf(enemy), 1);
+                    this.enemies.splice(eIndex, 1);
                     this.projectiles.splice(pIndex, 1);
                 }
             });

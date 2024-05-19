@@ -2,8 +2,8 @@ import { ctx, canvas } from './Util.js';
 
 export class Platform {
     constructor(x, y, type = 'normal') {
-        this.width = 60;
-        this.height = 18;
+        this.width = 70;
+        this.height = 40;
         this.x = x;
         this.y = y;
         this.type = type;
@@ -36,10 +36,9 @@ export class PlatformManager {
     }
 
     initPlatforms() {
-        // Create initial platforms
-        for (let i = 0; i < 10; i++) {  // Increased number of initial platforms
-            let x = Math.random() * (canvas.width - 60);
-            let y = canvas.height - 75 * i;
+        for (let i = 0; i < 15; i++) { 
+            let x = Math.random() * (canvas.width - 80);
+            let y = canvas.height - 60 * i;
             let type = this.getRandomPlatformType();
             this.platforms.push(new Platform(x, y, type));
         }
@@ -52,10 +51,10 @@ export class PlatformManager {
 
     update() {
         this.platforms.forEach(platform => {
-            platform.y += 2; // Adjust this value as needed for platform movement speed
+            platform.y += 2;
             if (platform.y > canvas.height) {
-                platform.y = -18;
-                platform.x = Math.random() * (canvas.width - 60);
+                platform.y = -24;
+                platform.x = Math.random() * (canvas.width - 80);
                 platform.type = this.getRandomPlatformType();
                 platform.img.src = platform.getPlatformImage(platform.type);
             }

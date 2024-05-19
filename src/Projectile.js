@@ -2,13 +2,13 @@ import { ctx } from './Util.js';
 
 export class Projectile {
     constructor(x, y) {
-        this.width = 5;
-        this.height = 10;
+        this.width = 10;
+        this.height = 20;
         this.x = x;
         this.y = y;
-        this.speed = -5;  // Speed at which projectile moves up
+        this.speed = -5;
         this.img = new Image();
-        this.img.src = 'images/ball.png';
+        this.img.src = '../images/ball.png';
     }
 
     update() {
