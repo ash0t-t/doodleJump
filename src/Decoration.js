@@ -1,17 +1,16 @@
-import {ctx, canvas} from './util.js'
+import { ctx } from './Util.js';
 
-export class Decoration{
-    img = new Image()
-
+export class Decoration {
     constructor(x, y, w, h, photo) {
-        this.x = x
-        this.y = y
-        this.w = w
-        this.h = h
-        this.img.src = photo
-        this.img.onload = () => ctx.drawImage(this.img, this.x, this.y, this.w, this.h) 
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.img = new Image();
+        this.img.src = photo;
     }
-    draw(){
-        this.img.onload()
+
+    draw() {
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 }
