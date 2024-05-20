@@ -5,6 +5,8 @@ export class Doodler {
   constructor() {
     this.width = 100;
     this.height = 100;
+    this.startWidth = this.width;
+    this.startHeight = this.height;
     this.velocityX = 0;
     this.velocityY = 0;
     this.gravity = 0.4;
@@ -58,7 +60,7 @@ export class Doodler {
   }
 
   jump(spring = false) {
-    this.velocityY = spring ? -16  : -8;
+    this.velocityY = spring ? -16 : -9;
   }
 
   moveRight() {
@@ -78,6 +80,10 @@ export class Doodler {
   }
 
   shoot() {
+    this.img.src = "../images/shoot.png";
+    this.img.onload = function () {
+      this.imgLoaded = true;
+    };
     game.fireProjectile();
   }
 

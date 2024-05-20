@@ -50,7 +50,7 @@ export class Game {
   }
 
   shoot() {
-    this.fireProjectile();
+    this.doodler.shoot();
   }
 
   run() {
