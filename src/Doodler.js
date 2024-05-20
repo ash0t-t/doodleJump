@@ -58,7 +58,7 @@ export class Doodler {
   }
 
   jump(spring = false) {
-    this.velocityY = spring ? -15 : -10;
+    this.velocityY = spring ? -16  : -8;
   }
 
   moveRight() {

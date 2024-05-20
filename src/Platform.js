@@ -63,8 +63,19 @@ export class PlatformManager {
   }
 
   getRandomPlatformType() {
-    const types = ["normal", "broken", "spring"];
-    return types[Math.floor(Math.random() * types.length)];
+    const weights = {
+      normal: 0.85,
+      broken: 0.05,
+      spring: 0.1,
+    };
+    let random = Math.random();
+    if (random < weights.normal) {
+      return "normal";
+    } else if (random < weights.normal + weights.broken) {
+      return "broken";
+    } else {
+      return "spring";
+    }
   }
 
   update() {
