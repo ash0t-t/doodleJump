@@ -15,6 +15,8 @@ export class Doodler {
     this.imgLoaded = false;
     this.isRocket = false;
     this.rocketTimer = 0;
+    this.movingRight = false;
+    this.movingLeft = false;
 
     this.img.onload = () => {
       this.imgLoaded = true;
@@ -29,6 +31,16 @@ export class Doodler {
   }
 
   update() {
+    if (this.movingRight) {
+      this.velocityX = 5;
+      this.img.src = "../images/doodler-right.png";
+    } else if (this.movingLeft) {
+      this.velocityX = -5;
+      this.img.src = "../images/doodler-left.png";
+    } else {
+      this.velocityX = 0;
+    }
+
     this.x += this.velocityX;
     if (this.x > canvas.width) {
       this.x = canvas.width;
@@ -63,25 +75,9 @@ export class Doodler {
     this.velocityY = spring ? -16 : -9;
   }
 
-  moveRight() {
-    this.velocityX += 3;
-    this.img.src = "../images/doodler-right.png";
-    this.img.onload = () => {
-      this.imgLoaded = true;
-    };
-  }
-
-  moveLeft() {
-    this.velocityX -= 3;
-    this.img.src = "../images/doodler-left.png";
-    this.img.onload = () => {
-      this.imgLoaded = true;
-    };
-  }
-
   shoot() {
     this.img.src = "../images/shoot.png";
-    this.img.onload = function () {
+    this.img.onload = () => {
       this.imgLoaded = true;
     };
     game.fireProjectile();

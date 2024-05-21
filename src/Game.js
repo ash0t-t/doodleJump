@@ -28,17 +28,28 @@ export class Game {
   }
 
   init() {
-    window.onkeydown = (e) => {
-      if (e.code == "ArrowRight" || e.code == "KeyD") {
-        this.goRight();
-      } else if (e.code == "ArrowLeft" || e.code == "KeyA") {
-        this.goLeft();
-      } else if (e.code == "ArrowUp") {
-        this.shoot();
-      }
-    };
+    window.addEventListener("keydown", e => this.handleKeyDown(e));
+    window.addEventListener("keyup", e => this.handleKeyUp(e));
     this.spawnEnemies();
     this.id = requestAnimationFrame(() => this.run());
+  }
+
+  handleKeyDown(e) {
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
+      this.doodler.movingRight = true;
+    } else if (e.code == "ArrowLeft" || e.code == "KeyA") {
+      this.doodler.movingLeft = true;
+    } else if (e.code == "ArrowUp") {
+      this.doodler.shoot();
+    }
+  }
+
+  handleKeyUp(e) {
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
+      this.doodler.movingRight = false;
+    } else if (e.code == "ArrowLeft" || e.code == "KeyA") {
+      this.doodler.movingLeft = false;
+    }
   }
 
   goRight() {
