@@ -151,9 +151,12 @@ export class Game {
 
   displayScore() {
     ctx.fillStyle = "black";
-    ctx.font = "16px sans-serif";
+    ctx.font = "25px 'Montserrat', sans-serif";
     ctx.fillText("Score: " + this.score, 10, 20);
     if (this.gameOver) {
+      ctx.fillStyle = "red";
+      ctx.shadowColor = "rgba(255, 0, 0, 0.7)";
+      ctx.shadowBlur = 20;
       ctx.fillText(
         "Game Over: Press 'Space' to Restart",
         canvas.width / 7,
