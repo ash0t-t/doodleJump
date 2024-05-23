@@ -1,5 +1,4 @@
 import { doodler } from "./Doodler.js";
-import { game } from "./index.js";
 
 export function updateScore(game) {
   if (doodler.velocityY < 0 || doodler.isRocket) {
